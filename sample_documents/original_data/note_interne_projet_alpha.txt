@@ -1,0 +1,68 @@
+NOTE INTERNE - CONFIDENTIEL
+
+Cabinet Martin & Associés
+Date : 20 janvier 2024
+De : Maître Sophie Martin
+À : Équipe juridique
+Objet : Projet Alpha - Dossier Jean Dupont vs TechnoPlus SAS
+
+CONTEXTE
+
+Le dossier Jean Dupont nécessite une attention particulière. Il s'agit d'un litige commercial
+complexe impliquant des questions de propriété intellectuelle et de rupture de contrat.
+
+FAITS PRINCIPAUX
+
+1. M. Dupont a été consultant pour TechnoPlus SAS de 2020 à 2023
+2. Un désaccord est survenu concernant la propriété d'un algorithme développé pendant la collaboration
+3. TechnoPlus revendique la propriété exclusive de l'algorithme
+4. M. Dupont affirme avoir développé l'algorithme sur son temps personnel
+
+ANALYSE JURIDIQUE PRÉLIMINAIRE
+
+Points en faveur du client :
+- Les contrats initiaux ne mentionnent pas explicitement la cession de PI
+- Des preuves de développement personnel existent (emails datés, commits Git)
+- Jurisprudence récente favorable (Cour d'Appel de Lyon, 2022)
+
+Points de vigilance :
+- TechnoPlus dispose de ressources financières importantes
+- La clause de confidentialité du contrat est ambiguë
+- Risque de procédure longue (18-24 mois)
+
+STRATÉGIE RECOMMANDÉE
+
+Phase 1 : Tentative de médiation (février-mars 2024)
+- Proposer une médiation amiable
+- Objectif : accord de co-propriété ou licence
+
+Phase 2 : Procédure judiciaire si échec (à partir d'avril 2024)
+- Assignation devant le Tribunal de Commerce de Lyon
+- Demande de référé pour geler l'exploitation de l'algorithme
+
+RESSOURCES NÉCESSAIRES
+
+- Avocat principal : Maître Martin (10h/semaine)
+- Avocat junior : Maître Dubois (5h/semaine)
+- Expert technique : à identifier (évaluation de l'algorithme)
+- Budget estimé : 45 000 € sur 12 mois
+
+PROCHAINES ÉTAPES
+
+1. Réunion avec le client - 25 janvier 2024
+2. Collecte des preuves techniques - avant le 10 février 2024
+3. Proposition de médiation à TechnoPlus - 15 février 2024
+4. Préparation dossier d'assignation (en parallèle) - mars 2024
+
+CONFIDENTIALITÉ
+
+Cette note est strictement confidentielle. Ne pas diffuser en dehors de l'équipe projet.
+Conservation : archives sécurisées pendant 5 ans minimum.
+
+Contacts :
+- Client : Jean Dupont - 06 12 34 56 78 - j.dupont@email.com
+- Partie adverse : TechnoPlus SAS - représentée par Cabinet Lefebvre
+
+Sophie Martin
+Associée responsable du dossier
+

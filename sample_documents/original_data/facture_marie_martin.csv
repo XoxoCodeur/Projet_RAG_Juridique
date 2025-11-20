@@ -1,0 +1,20 @@
+Date,Description,Quantité,Prix Unitaire,Total
+2024-01-15,Consultation juridique initiale - Marie Martin,2,300,600
+2024-01-20,Rédaction contrat de travail,1,800,800
+2024-01-25,Révision clause de confidentialité,1,400,400
+2024-02-01,Consultation téléphonique (1h),1,300,300
+2024-02-10,Analyse de jurisprudence,3,250,750
+2024-02-15,Rédaction mise en demeure,1,500,500
+
+Client,Marie Martin
+Adresse,28 Boulevard Haussmann 75009 Paris
+Référence,FAC-2024-002
+Date émission,2024-02-20
+Date échéance,2024-03-20
+Sous-total HT,3350
+TVA 20%,670
+Total TTC,4020
+
+Modalités de paiement,Virement bancaire sous 30 jours
+IBAN,FR76 1234 5678 9012 3456 7890 123
+Coordonnées,Cabinet Martin & Associés - 15 Avenue de l'Opéra 75001 Paris
