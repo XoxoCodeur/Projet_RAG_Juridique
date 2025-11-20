@@ -1,8 +1,5 @@
-# 📚 Assistant Juridique RAG
+# 📚 Test technique AI Sisters
 
-## 🎯 Vue d'ensemble
-
-J'ai développé une application RAG (Retrieval-Augmented Generation) complète pour un cabinet d'avocats en droit des affaires. L'objectif était de créer un assistant conversationnel capable d'interroger intelligemment une base documentaire juridique interne, avec une interface moderne et intuitive, tout en garantissant la confidentialité des données.
 
 **Points clés du projet :**
 - ✅ Interface utilisateur moderne et intuitive (Streamlit)
@@ -17,9 +14,6 @@ J'ai développé une application RAG (Retrieval-Augmented Generation) complète 
 ### Stack technologique
 
 **Framework UI : Streamlit**
-- Choix motivé par la rapidité de développement et l'interface intuitive
-- Permet de créer une interface moderne sans JavaScript
-- Gestion native du state management pour les conversations
 
 **LLM : OpenAI GPT-5 Mini**
 - Modèle léger et performant pour la génération de réponses
@@ -57,11 +51,10 @@ J'ai structuré le code en modules clairement séparés :
     └── sync_manager.py           # Synchronisation fichiers ↔ base
 ```
 
-Cette séparation permet une maintenance facile et des tests unitaires ciblés.
 
 ## 🎨 Interface utilisateur moderne
 
-J'ai accordé une attention particulière à l'expérience utilisateur en créant une interface épurée et professionnelle :
+J'ai accordé une attention particulière à l'expérience utilisateur :
 
 ### Design et ergonomie
 
@@ -82,15 +75,8 @@ J'ai accordé une attention particulière à l'expérience utilisateur en créan
 - Indicateur de synchronisation visuel (✓ ou ⚠️)
 - Statistiques en temps réel
 - Paramètres de chunking ajustables
+- Paramètre de synchronisation automatique 
 
-### Choix de design
-
-J'ai opté pour un design cohérent avec le thème dark de Streamlit :
-- Bordures subtiles avec transparence (`rgba(255, 255, 255, 0.1)`)
-- Effets hover élégants (transition smooth)
-- Espacement aéré pour une meilleure lisibilité
-- Emojis pour une interface plus conviviale
-- CSS personnalisé pour améliorer l'apparence native de Streamlit
 
 ## 🚀 Fonctionnalités principales
 
@@ -239,15 +225,6 @@ logger.error(f"Erreur lors de l'indexation : {e}", exc_info=True)
 
 Le `exc_info=True` permet d'avoir la stack trace complète en production.
 
-### Exceptions spécifiques
-```python
-try:
-    docs_filtered = retriever.invoke(question)
-except (ValueError, KeyError, TypeError) as e:
-    logger.warning(f"Erreur lors du parsing : {e}", exc_info=True)
-    # Fallback approprié
-```
-
 ### Validation des entrées
 - Taille maximale des fichiers : 10 MB (configuré dans `.streamlit/config.toml`)
 - Validation du chevauchement < taille chunk
@@ -274,6 +251,7 @@ Les paramètres de chunking peuvent être modifiés via l'interface utilisateur 
 
 ### 3. Limitation du contexte dans la reformulation
 Seuls les 3 derniers échanges sont utilisés pour la reformulation des requêtes, ce qui évite de dépasser la fenêtre de contexte du LLM et réduit les coûts API.
+Ce paramètre est à adapter en fonction des usages/besoins
 
 ### 4. Gestion efficace de la mémoire
 - Déchargement automatique des fichiers après indexation
@@ -325,26 +303,7 @@ streamlit run app.py
 
 L'application sera accessible sur `http://localhost:8501`
 
-## Utilisation
 
-### Workflow typique
-1. **Page d'accueil** : Vue d'ensemble du projet
-2. **Gestion des documents** :
-   - Uploader des fichiers (TXT, CSV, HTML)
-   - Ajuster les paramètres de chunking si nécessaire
-   - Vérifier l'état de synchronisation
-3. **Chatbot** :
-   - Poser des questions en langage naturel
-   - Consulter les sources citées
-   - Exporter les conversations utiles
-
-### Exemples de requêtes
-```
-"Quels sont les honoraires prévus dans le contrat de Jean Dupont ?"
-"Résume-moi l'article 3"
-"Y a-t-il des contentieux en cours ?"
-"Quelle est la jurisprudence récente sur les clauses de non-concurrence ?"
-```
 
 ## Structure des données
 
@@ -383,93 +342,17 @@ J'ai intégré plusieurs mesures pour garantir la sécurité des données :
 
 - **Clé API sécurisée** : Stockée dans `.env` (non versionné)
 - **Données locales** : Pas de transmission à des serveurs tiers (sauf OpenAI pour le LLM)
-- **Validation des entrées** : Filtrage des fichiers malveillants et limitation de taille
 - **Logs sécurisés** : Aucune donnée sensible dans les logs
 - **Isolation des conversations** : Chaque conversation est stockée séparément
 
-## 📈 Métriques et performances
 
-**Temps de réponse moyen** : ~2-3 secondes par requête
-- Recherche vectorielle : ~100ms
-- Génération LLM : ~1.5-2s
-- Reformulation (si nécessaire) : ~500ms
-
-**Précision** :
-- Le système de filtrage par métadonnées améliore la pertinence de ~30%
-- La reformulation de requêtes augmente la qualité des réponses de suivi
-
-## 🎯 Décisions techniques justifiées
-
-### Pourquoi Streamlit plutôt que Flask/FastAPI ?
-Streamlit permet de créer rapidement une interface moderne sans JavaScript. Pour un prototype ou une application interne, c'est le choix idéal. Si l'application devait évoluer vers une API publique, j'ajouterais FastAPI en backend.
-
-### Pourquoi ChromaDB plutôt que Pinecone/Weaviate ?
-ChromaDB est léger, gratuit, et persiste localement. Pour un cabinet d'avocats soucieux de la confidentialité, ne pas dépendre d'un service cloud externe est un avantage majeur.
-
-### Pourquoi GPT-4o-mini plutôt que GPT-4 ?
-Le mini est plus rapide et moins cher, tout en offrant une qualité suffisante pour notre cas d'usage. J'ai privilégié la réactivité de l'interface.
-
-### Pourquoi le timestamp dans les noms de fichiers ?
-Cela permet de gérer les uploads de fichiers avec le même nom sans collision, tout en gardant une trace temporelle. Le nom original est conservé et affiché à l'utilisateur.
-
-## 🔄 Améliorations futures possibles
-
-### Court terme
-- Support PDF avec extraction de texte (PyPDF2 ou PDFPlumber)
-- Tests unitaires complets (pytest)
-- Métriques de performance détaillées (dashboard de monitoring)
-- Mode de recherche avancée avec opérateurs booléens
-
-### Moyen terme
-- Authentification multi-utilisateurs (avec rôles)
-- Permissions granulaires par document
-- Export de conversations en PDF formaté avec logo cabinet
-- API REST pour intégration avec d'autres outils du cabinet
-- Support multilingue (détection automatique)
-
-### Long terme
-- Fine-tuning d'un modèle sur le corpus juridique du cabinet
-- RAG hybride (dense + sparse retrieval avec BM25)
-- Cache intelligent des embeddings
-- Suggestions de questions basées sur le contexte
-- Résumés automatiques de longs documents
-
-## 📝 Notes de développement
-
-### Défis rencontrés et solutions
-
-**1. Gestion des conversations multiples**
-- Problème : Streamlit recharge la page à chaque interaction
-- Solution : Utilisation intelligente du `session_state` et sauvegarde JSON
-
-**2. Synchronisation fichiers ↔ base vectorielle**
-- Problème : Incohérences après suppressions/ajouts
-- Solution : Système de sync avec comparaison de timestamps
-
-**3. Citations vérifiables**
-- Problème : Le LLM peut inventer des sources
-- Solution : Parsing strict des citations et validation des numéros
-
-**4. Performance de l'interface**
-- Problème : Streamlit peut sembler lent sans feedback
-- Solution : Spinners, progress bars et messages de statut partout
-
-### Temps de développement
-- Architecture et pipeline RAG : ~8h
-- Interface utilisateur : ~4h
-- Gestion des conversations : ~3h
-- Système de synchronisation : ~2h
-- Tests et debugging : ~3h
-- **Total : ~20h**
-
----
 
 ## 👨‍💻 À propos
 
-**Développé par** : Robin
+**Développé par** : Robin Baret - robin.baret1@gmail.com - 06 51 26 00 76
 **Date** : Novembre 2025
 **Contexte** : Test technique AI Sisters
-**Stack** : Python 3.11, Streamlit, LangChain, ChromaDB, OpenAI GPT-4o-mini
+**Stack** : Python 3.11, Streamlit, ChromaDB, OpenAI
 
 **Technologies utilisées** :
 - `streamlit` - Framework UI
@@ -482,4 +365,4 @@ Cela permet de gérer les uploads de fichiers avec le même nom sans collision, 
 
 ---
 
-*Ce projet démontre une compréhension approfondie des systèmes RAG, de l'importance de l'UX, et de la capacité à créer une application complète et robuste.*
+
